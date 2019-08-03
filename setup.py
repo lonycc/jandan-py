@@ -4,7 +4,7 @@ from setuptools import setup, find_packages
 
 __version__ = '0.0.1'
 
-__doc__ = 'jd-py allow you visit jandan.net via cli'
+__doc__ = 'jandan-cli allow you visit jandan.net via cli'
 
 setup(
     name='jandan-cli',
@@ -43,7 +43,6 @@ setup(
         'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3.7',
-        'Topic :: jandan',
-        'Topic :: moyu'
+        'Topic :: Terminals'
     ]
 )
