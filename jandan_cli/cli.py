@@ -52,7 +52,7 @@ from jandan_cli.const import (
 CONTEXT_SETTINGS = dict(help_option_names=['-h', '--help'])
 
 @click.command()
-@click.option('--category', default='pic', help='qa/treehole/zoo/pic/ooxx/faq/zhoubian/app/pond/top', type=click.Choice(COMMENT_CATEGORIES))
+@click.option('-c', '--category', default='pic', help='qa/treehole/zoo/pic/ooxx/faq/zhoubian/app/pond/top', type=click.Choice(COMMENT_CATEGORIES))
 @click.option('-d', '--download', is_flag=True, help='download all pics in the list?')
 @click.argument('page', required=False, type=int)
 def comment_list(category, page, download):
@@ -231,6 +231,7 @@ def my_favour(remove, truncate):
   output.warn('[comment] total {}, [article] total {}'.format(len(summary['comment']), len(summary['article'])))
   output.succeed('comment list: {}'.format(', '.join(summary['comment'])))
   output.succeed('article list: {}'.format(', '.join(summary['article'])))
+  output.color_print('\n you can view article via: jandan-py article-detail [article_id]\n view comment via: jandan-py comment-detail [comment_id]', fg='blue', bold=True)
 
 
 def _init():
