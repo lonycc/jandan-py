@@ -3,6 +3,7 @@ from __future__ import absolute_import
 
 import click
 import sys
+import os
 import json
 from prompt_toolkit import prompt
 from prompt_toolkit.auto_suggest import AutoSuggestFromHistory
@@ -235,7 +236,6 @@ def my_favour(remove, truncate):
 
 
 def _init():
-  import os
   if not os.path.isdir(IMAGE_PATH):
     os.makedirs(IMAGE_PATH)
 

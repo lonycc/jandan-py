@@ -1,12 +1,17 @@
 # -*- coding: utf-8 -*-
 
 from __future__ import absolute_import
+import gevent
+from gevent import monkey
+monkey.patch_all()
 
 import json
 import sys
 from requests import Session
 from tabulate import tabulate
 from bs4 import BeautifulSoup as bsoup
+import grequests
+
 from jandan_cli.utils import is_json, output
 from jandan_cli.const import IMAGE_PATH, TUCAO_LIST, HEADERS
 
@@ -29,10 +34,6 @@ def start_request(url, method='get', data={}, headers=HEADERS, timeout=30):
 
 
 def download_pics(urls, path=IMAGE_PATH, headers={}):
-    import grequests
-    import gevent
-    from gevent import monkey
-    monkey.patch_all()
     try:
         rs = (grequests.get(url, timeout=30, headers=headers, stream=True) for url in urls.split('\n'))
         for r in grequests.map(rs):
