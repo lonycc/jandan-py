@@ -9,6 +9,8 @@ from prompt_toolkit import prompt
 from prompt_toolkit.auto_suggest import AutoSuggestFromHistory
 from prompt_toolkit.history import InMemoryHistory
 from bs4 import BeautifulSoup as bsoup
+from base64 import b64encode
+from datetime import datetime
 
 from jandan_cli import __version__
 from jandan_cli.crawler import (
@@ -59,7 +61,9 @@ CONTEXT_SETTINGS = dict(help_option_names=['-h', '--help'])
 def comment_list(category, page, download):
   url = COMMENT_LIST.format(category)
   if page:
-    url = f'{url}/page-{page}'
+    today = datetime.now().strftime('%Y%m%d')
+    page_encode = b64encode(f'{today}-{page}'.encode('utf-8')).decode('utf-8')
+    url = f'{url}/{page_encode}#comments'
   r = start_request(url)
   render_comment_list(r, download)
 
